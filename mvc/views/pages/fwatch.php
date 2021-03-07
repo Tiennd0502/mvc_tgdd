@@ -63,659 +63,129 @@
   </div>
   <div id="clock-man" class="contents current">
     <div class="owl-carousel slide-product w-max home-promo h-auto owl-theme" >
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.992.000₫</strong>
-            <span>7.490.000₫</span>
-            <i>-20%</i>                      
+      <?php 
+        $fwatchs = json_decode($data["Fwatch"], TRUE);
+        $index = 0;
+        foreach ($fwatchs as $item) {?>
+          <div class="item">
+            <a href="fwatch/detail/<?= $item["id"]?>" class="">
+              <img class="lazyload" loading="lazy" data-src="public/images/avatar<?= $item["image"]?>" alt="" width="180" height="180" >
+              <h3><?= $item["name"]?></h3>
+              <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
+              <div class="product-price">
+                <?php 
+                if ($item["discount"] != 0) { ?>
+                  <strong><?= number_format(round($item["price"] - $item["price"] * $item["discount"] / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($item["price"],0,",",".") ?></span>
+                  <i>-<?= $item["discount"] ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($item["price"],0,",", ".")  ?></strong>
+                <?php }?>                      
+              </div>
+              <div class="product-promo noimage">
+                <!-- <p>Quà <b>100.000₫</b></p> -->
+                <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
+              </div>
+              <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
+              <!-- <label class="installment">Trả góp 0%</label> -->
+              <!-- <label class="discount">GIẢM 49.000₫</label> -->
+              <?php 
+              if (!empty($item["icon"])) { ?>
+                <img class="icon-imgNew cate2 lazyload" loading="lazy" data-src="public/images/icon<?= $item["icon"]?>" alt="" >
+              <?php }?>
+            </a>
           </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/smile-kid-sl022-01-tre-em-1-2-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>232.000₫</strong>
-            <span>290.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/larmes-lm-tf004-ot49g-211-4nb-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.256.000₫</strong>
-            <span>2.820.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <p>Quà <b>350.000₫</b></p>
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.992.000₫</strong>
-            <span>7.490.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/smile-kid-sl022-01-tre-em-1-2-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>232.000₫</strong>
-            <span>290.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/larmes-lm-tf004-ot49g-211-4nb-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.256.000₫</strong>
-            <span>2.820.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <p>Quà <b>350.000₫</b></p>
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.992.000₫</strong>
-            <span>7.490.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/smile-kid-sl022-01-tre-em-1-2-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>232.000₫</strong>
-            <span>290.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/larmes-lm-tf004-ot49g-211-4nb-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.256.000₫</strong>
-            <span>2.820.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <p>Quà <b>350.000₫</b></p>
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.992.000₫</strong>
-            <span>7.490.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-        </a>
-      </div>
+        <?php
+          $index++; 
+          if ($index == 10) {break;}
+        } ?>
     </div>
   </div>
   <div id="clock-woman" class="contents">
     <div class="owl-carousel home-promo slide-product h-auto owl-theme" >
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/samsung-galaxy-watch-3-41mm-vang-dong-400x400.jpg" alt="" width="180" height="180">
-          <h3>Samsung Galaxy Watch 3 41mm viền thép dây da</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>9.490.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
+      <?php 
+        $swatchs = json_decode($data["Swatch"], TRUE);
+        $index = 0;
+        foreach ($swatchs as $item) {?>
+          <div class="item">
+            <a href="fwatch/detail/<?= $item["id"]?>" class="">
+              <img class="lazyload" loading="lazy" data-src="public/images/avatar<?= $item["image"]?>" alt="" width="180" height="180" >
+              <h3><?= $item["name"]?></h3>
+              <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
+              <div class="product-price">
+                <?php 
+                if ($item["discount"] != 0) { ?>
+                  <strong><?= number_format(round($item["price"] - $item["price"] * $item["discount"] / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($item["price"],0,",",".") ?></span>
+                  <i>-<?= $item["discount"] ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($item["price"],0,",", ".")  ?></strong>
+                <?php }?>                      
+              </div>
+              <div class="product-promo noimage">
+                <!-- <p>Quà <b>100.000₫</b></p> -->
+                <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
+              </div>
+              <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
+              <!-- <label class="installment">Trả góp 0%</label> -->
+              <!-- <label class="discount">GIẢM 49.000₫</label> -->
+              <?php 
+              if (!empty($item["icon"])) { ?>
+                <img class="icon-imgNew cate2 lazyload" loading="lazy" data-src="public/images/icon<?= $item["icon"]?>" alt="" >
+              <?php }?>
+            </a>
           </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/oppo-watch-41mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-          <h3>Oppo Watch 41mm hồng</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.390.000₫</strong>
-            <span>5.990.000₫</span>
-            <i>-10%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/dong-ho-thong-minh-huawei-watch-gt-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Huawei Watch GT</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.490.000₫</strong>
-            <span>2.990.000₫</span>
-            <i>-16%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/apple-watch-s5-40mm-vien-nhom-day-cao-su10-2-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Apple Watch S5 40mm viền nhôm dây cao su</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>11.990.000₫</strong>
-            <!-- <span>2.990.000₫</span>
-            <i>-16%</i> -->                      
-          </div>
-          <div class="rating-result">
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star "></i>
-            <i class="fas fa-star "></i>
-            <span>9 đánh giá</span>
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/huawei-watch-gt2-e-46mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-          <h3>Huawei Watch GT 2E 46mm dây silicone</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>3.990.000₫</strong>
-            <!-- <span>2.990.000₫</span>
-            <i>-16%</i> -->                      
-          </div>
-          <div class="rating-result">
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star "></i>
-            <i class="fas fa-star "></i>
-            <span>2 đánh giá</span>
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/samsung-galaxy-watch-3-41mm-vang-dong-400x400.jpg" alt="" width="180" height="180">
-          <h3>Samsung Galaxy Watch 3 41mm viền thép dây da</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>9.490.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/oppo-watch-41mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-          <h3>Oppo Watch 41mm hồng</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.390.000₫</strong>
-            <span>5.990.000₫</span>
-            <i>-10%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/dong-ho-thong-minh-huawei-watch-gt-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Huawei Watch GT</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.490.000₫</strong>
-            <span>2.990.000₫</span>
-            <i>-16%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/apple-watch-s5-40mm-vien-nhom-day-cao-su10-2-1-400x400.jpg" alt="" width="180" height="180">
-          <h3>Apple Watch S5 40mm viền nhôm dây cao su</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>11.990.000₫</strong>
-            <!-- <span>2.990.000₫</span>
-            <i>-16%</i> -->                      
-          </div>
-          <div class="rating-result">
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star "></i>
-            <i class="fas fa-star "></i>
-            <span>9 đánh giá</span>
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/huawei-watch-gt2-e-46mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-          <h3>Huawei Watch GT 2E 46mm dây silicone</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>3.990.000₫</strong>
-            <!-- <span>2.990.000₫</span>
-            <i>-16%</i> -->                      
-          </div>
-          <div class="rating-result">
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star "></i>
-            <i class="fas fa-star "></i>
-            <span>2 đánh giá</span>
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
+        <?php
+          $index++; 
+          if ($index == 10) {break;}
+        } ?>
     </div>
   </div>
   <div id="clock-chain" class="contents">
     <div class="owl-carousel home-promo slide-product h-auto owl-theme" >
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-samsung-galaxy-watch-active-samsung-r500-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây đeo Samsung Galaxy Watch Active/Active 2 (20mm)</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>350.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
+      <?php 
+        $alberts = json_decode($data["Albert"], TRUE);
+        $index = 0;
+        foreach ($alberts as $item) {?>
+          <div class="item">
+            <a href="fwatch/detail/<?= $item["id"]?>" class="">
+              <img class="lazyload" loading="lazy" data-src="public/images/avatar<?= $item["image"]?>" alt="" width="180" height="180" >
+              <h3><?= $item["name"]?></h3>
+              <div class="product-price">
+                <?php 
+                if ($item["discount"] != 0) { ?>
+                  <strong><?= number_format(round($item["price"] - $item["price"] * $item["discount"] / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($item["price"],0,",",".") ?></span>
+                  <i>-<?= $item["discount"] ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($item["price"],0,",", ".")  ?></strong>
+                <?php }?>                      
+              </div>
+              <div class="product-promo noimage">
+              </div>
+              <?php 
+              if (!empty($item["icon"])) { ?>
+                <img class="icon-imgNew cate2 lazyload" loading="lazy" data-src="public/images/icon<?= $item["icon"]?>" alt="" >
+              <?php }?>
+            </a>
           </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-phuong-linh-g027-nau-20mm-233520-123500-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ G027 Nâu size 20mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>200.000₫</strong>
-            <span>250.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-dong-ho-l013-06-22-nau-bo-size-22mm-11-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ L013-06-22 Nâu Bò size 22mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>312.000₫</strong>
-            <span>390.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-samsung-galaxy-watch-active-samsung-r500-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây đeo Samsung Galaxy Watch Active/Active 2 (20mm)</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>350.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-phuong-linh-g027-nau-20mm-233520-123500-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ G027 Nâu size 20mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>200.000₫</strong>
-            <span>250.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-dong-ho-l013-06-22-nau-bo-size-22mm-11-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ L013-06-22 Nâu Bò size 22mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>312.000₫</strong>
-            <span>390.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-samsung-galaxy-watch-active-samsung-r500-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây đeo Samsung Galaxy Watch Active/Active 2 (20mm)</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>350.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-phuong-linh-g027-nau-20mm-233520-123500-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ G027 Nâu size 20mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>200.000₫</strong>
-            <span>250.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-da-dong-ho-l013-06-22-nau-bo-size-22mm-11-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây da đồng hồ L013-06-22 Nâu Bò size 22mm</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>312.000₫</strong>
-            <span>390.000₫</span>
-            <i>-20%</i>                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/day-samsung-galaxy-watch-active-samsung-r500-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Dây đeo Samsung Galaxy Watch Active/Active 2 (20mm)</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>350.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
-          </div>
-          <!-- <div class="product-promo noimage">
-            <p>Quà <b>100.000₫</b></p>
-            <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-          </div> -->
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
+        <?php
+          $index++; 
+          if ($index == 10) {break;}
+        } ?>
     </div>
   </div>
 </div>
 <!-- fashion watch -->
 <div class="fashion-watch">
   <a href="">
-    <img src="./images/380165Citizen-380x165.png" alt="" width="380" height="165">
+    <img src="public/images/380165Citizen-380x165.png" alt="" width="380" height="165">
   </a>
   <a href="">
-    <img src="./images/demdonggiadesk-380x165.jpg" alt="" width="380" height="165">
+    <img src="public/images/demdonggiadesk-380x165.jpg" alt="" width="380" height="165">
   </a>
   <a href="">
-    <img src="./images/380165Oppo-380x165.png" alt="" width="380" height="165">
+    <img src="public/images/380165Oppo-380x165.png" alt="" width="380" height="165">
   </a>
 </div>
 <!-- bộ sưu tập đồng hồ thời trang -->
@@ -725,7 +195,7 @@
       <h2>Đồng hồ thời trang</h2>
       <a href="">Xem tất cả <i class="far fa-chevron-right"></i></a>
     </div>
-    <img src="./images/banner-fashionwatch-min.png" alt="">
+    <img src="public/images/banner-fashionwatch-min.png" alt="">
   </div>
   <div class="content-watches">
     <div class="tabs">
@@ -741,166 +211,36 @@
     </div>
     <div id="manpro" class="tab-content current">
       <div class="owl-carousel home-promo h-auto  w-max owl-watch owl-theme" >
+      <?php 
+      $men_watchs = json_decode($data["Men_watchs"], TRUE);
+      $index = 0;
+        foreach ($men_watchs as $item) {?>
         <div class="item">
           <a href="" class="">
-            <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
+            <img src="public/images/avatar<?= $item["image"]?>" alt="" width="180" height="180">
+            <h3><?= $item["name"]?></h3>
             <div class="product-price">
-              <strong>5.992.000₫</strong>
-              <span>7.490.000₫</span>
-              <i>-20%</i>                      
+              <?php 
+                if ($item["discount"] != 0) { ?>
+                  <strong><?= number_format(round($item["price"] - $item["price"] * $item["discount"] / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($item["price"],0,",",".") ?></span>
+                  <i>-<?= $item["discount"] ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($item["price"],0,",", ".")  ?></strong>
+                <?php }?>                    
             </div>
             <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
             </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
+             <?php 
+              if (!empty($item["icon"])) { ?>
+                <img class="icon-imgNew cate2 lazyload" loading="lazy" data-src="public/images/icon<?= $item["icon"]?>" alt="" >
+              <?php }?>
           </a>
         </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/smile-kid-sl022-01-tre-em-1-2-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>232.000₫</strong>
-              <span>290.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/larmes-lm-tf004-ot49g-211-4nb-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>2.256.000₫</strong>
-              <span>2.820.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <p>Quà <b>350.000₫</b></p>
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>5.992.000₫</strong>
-              <span>7.490.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>5.992.000₫</strong>
-              <span>7.490.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/smile-kid-sl022-01-tre-em-1-2-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>232.000₫</strong>
-              <span>290.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/larmes-lm-tf004-ot49g-211-4nb-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Trẻ em Smile Kid SL022-01</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>2.256.000₫</strong>
-              <span>2.820.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <p>Quà <b>350.000₫</b></p>
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <!-- <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt=""> -->
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/mathey-tissot-h411bpi-nam-1-400x400.jpg" alt="" width="180" height="180">
-            <h3>Đồng hồ Nam Mathey Tissot H411BPI</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>5.992.000₫</strong>
-              <span>7.490.000₫</span>
-              <i>-20%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate2" src="./images/icon-thuy-sy.png" alt="">
-          </a>
-        </div>
+       <?php
+          $index++; 
+          if ($index == 10) {break;}
+        } ?>
       </div>
       <!-- ----------- -->
       <div class="owl-carousel home-promo h-auto w-max owl-watch owl-theme" style="display: none;">
@@ -1322,7 +662,7 @@
       <h2>Đồng hồ thông minh</h2>
       <a href="">Xem tất cả <i class="far fa-chevron-right"></i></a>
     </div>
-    <img src="./images/banner-smartwatch-min.png" alt="">
+    <img src="public/images/banner-smartwatch-min.png" alt="">
   </div>
   <div class="content-watches">
     <div class="tabs">
@@ -1339,134 +679,37 @@
     </div>
     <div id="girlpro" class="tab-content current">
       <div class="owl-carousel home-promo h-auto owl-watch owl-theme" >
+        <?php 
+      $filter_watchs = json_decode($data["Filter_watchs"], TRUE);
+      $index = 0;
+        foreach ($filter_watchs as $item) {?>
         <div class="item">
-          <a href="" class="">
-            <img src="./images/samsung-galaxy-watch-3-41mm-vang-dong-400x400.jpg" alt="" width="180" height="180">
-            <h3>Samsung Galaxy Watch 3 41mm viền thép dây da</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
+          <a href="swatch/Detail/<?= $item["id"]?>" class="">
+            <img src="public/images/avatar<?= $item["image"]?>" alt="" width="180" height="180">
+            <h3><?= $item["name"]?></h3>
             <div class="product-price">
-              <strong>9.490.000₫</strong>
-              <!-- <span>650.000₫</span>
-              <i>-7%</i> -->                      
+              <?php 
+                if ($item["discount"] != 0) { ?>
+                  <strong><?= number_format(round($item["price"] - $item["price"] * $item["discount"] / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($item["price"],0,",",".") ?></span>
+                  <i>-<?= $item["discount"] ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($item["price"],0,",", ".")  ?></strong>
+                <?php }?>                    
             </div>
             <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
             </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <label class="installment">Trả góp 0%</label>
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
+             <?php 
+              if (!empty($item["icon"])) { ?>
+                <img class="icon-imgNew cate3 lazyload" loading="lazy" data-src="public/images/icon<?= $item["icon"]?>" alt="" >
+              <?php }?>
           </a>
         </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/oppo-watch-41mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-            <h3>Oppo Watch 41mm hồng</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>5.390.000₫</strong>
-              <span>5.990.000₫</span>
-              <i>-10%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <label class="installment">Trả góp 0%</label>
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-          </a>
-        </div>
-        <div class="item">
-          <a href="" class="">
-            <img src="./images/dong-ho-thong-minh-huawei-watch-gt-thum-400x400.jpg" alt="" width="180" height="180">
-            <h3>Huawei Watch GT</h3>
-            <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-            <div class="product-price">
-              <strong>2.490.000₫</strong>
-              <span>2.990.000₫</span>
-              <i>-16%</i>                      
-            </div>
-            <div class="product-promo noimage">
-              <!-- <p>Quà <b>100.000₫</b></p> -->
-              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-            </div>
-            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-            <!-- <label class="installment">Trả góp 0%</label> -->
-            <!-- <label class="discount">GIẢM 49.000₫</label> -->
-            <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-          </a>
-        </div>
-        <div class="item">
-        <a href="" class="">
-          <img src="./images/samsung-galaxy-watch-3-41mm-vang-dong-400x400.jpg" alt="" width="180" height="180">
-          <h3>Samsung Galaxy Watch 3 41mm viền thép dây da</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>9.490.000₫</strong>
-            <!-- <span>650.000₫</span>
-            <i>-7%</i> -->                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/oppo-watch-41mm-day-silicone-ava-400x400.jpg" alt="" width="180" height="180">
-          <h3>Oppo Watch 41mm hồng</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>5.390.000₫</strong>
-            <span>5.990.000₫</span>
-            <i>-10%</i>                      
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <label class="installment">Trả góp 0%</label>
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt="">
-        </a>
-      </div>
-      <div class="item">
-        <a href="" class="">
-          <img src="./images/dong-ho-thong-minh-huawei-watch-gt-thum-400x400.jpg" alt="" width="180" height="180">
-          <h3>Huawei Watch GT</h3>
-          <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-          <div class="product-price">
-            <strong>2.490.000₫</strong>
-            <span>2.990.000₫</span>
-            <i>-16%</i>                      
-          </div>
-          <div class="rating-result">
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star voted"></i>
-            <i class="fas fa-star "></i>
-            <span>4 đánh giá</span>
-          </div>
-          <div class="product-promo noimage">
-            <!-- <p>Quà <b>100.000₫</b></p> -->
-            <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-          </div>
-          <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-          <!-- <label class="installment">Trả góp 0%</label> -->
-          <!-- <label class="discount">GIẢM 49.000₫</label> -->
-          <!-- <img class="icon-imgNew cate3" src="./images/Label_01-05.png" alt=""> -->
-        </a>
-      </div>
+       <?php
+          $index++; 
+          if ($index == 10) {break;}
+        } ?>
+        
       </div>
     </div>
   </div>

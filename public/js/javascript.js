@@ -1,113 +1,181 @@
 $(function() {
-	
+  if (address_2 = localStorage.getItem('address_2_saved')) {
+    $('select[name="calc_shipping_district"] option').each(function() {
+      if ($(this).text() == address_2) {
+        $(this).attr('selected', '')
+      }
+    })
+    $('input.billing_address_2').attr('value', address_2)
+  }
+  if (district = localStorage.getItem('district')) {
+    $('select[name="calc_shipping_district"]').html(district)
+    $('select[name="calc_shipping_district"]').on('change', function() {
+      var target = $(this).children('option:selected')
+      target.attr('selected', '')
+      $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+      address_2 = target.text()
+      $('input.billing_address_2').attr('value', address_2)
+      district = $('select[name="calc_shipping_district"]').html()
+      localStorage.setItem('district', district)
+      localStorage.setItem('address_2_saved', address_2)
+    })
+  }
+
+  $('select[name="calc_shipping_provinces"]').each(function() {
+    var $this = $(this),
+      stc = ''
+    c.forEach(function(i, e) {
+      e += +1
+      stc += '<option value=' + e + '>' + i + '</option>'
+      $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
+      if (address_1 = localStorage.getItem('address_1_saved')) {
+        $('select[name="calc_shipping_provinces"] option').each(function() {
+          if ($(this).text() == address_1) {
+            $(this).attr('selected', '')
+          }
+        })
+        $('input.billing_address_1').attr('value', address_1)
+      }
+      $this.on('change', function(i) {
+        i = $this.children('option:selected').index() - 1
+        var str = '',
+          r = $this.val()
+        if (r != '') {
+          arr[i].forEach(function(el) {
+            str += '<option value="' + el + '">' + el + '</option>'
+            $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>' + str)
+          })
+          var address_1 = $this.children('option:selected').text()
+          var district = $('select[name="calc_shipping_district"]').html()
+          localStorage.setItem('address_1_saved', address_1)
+          localStorage.setItem('district', district)
+          $('select[name="calc_shipping_district"]').on('change', function() {
+            var target = $(this).children('option:selected')
+            target.attr('selected', '')
+            $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+            var address_2 = target.text()
+            $('input.billing_address_2').attr('value', address_2)
+            district = $('select[name="calc_shipping_district"]').html()
+            localStorage.setItem('district', district)
+            localStorage.setItem('address_2_saved', address_2)
+          })
+        } else {
+          $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>')
+          district = $('select[name="calc_shipping_district"]').html()
+          localStorage.setItem('district', district)
+          localStorage.removeItem('address_1_saved', address_1)
+        }
+      })
+    })
+  })
 	var inforGenerals = [
-												"Name", "Avatar", "Icon",
-												"Trademarks", "Library", "Price", "Gift",
-												"Discount", "Active", "Hot",
-												"Screen","HDH", "CPU", "RAM", "Image_hot",
-												"InternalMemory", "Description", "Carousel",
-												"Installment"
-											];
-	var inforMobiles = [	
-											"RearCamera", "FrontCamera", "MemoryStick",
-											"SIM" , "Battery"
-									];
-	var inforTablets = [
-											"RearCamera", "FrontCamera", "PortConnect",
-											"SIM", "Size"
-										]	;
-	var inforLaptops = [
-											"GraphicCard", "PortConnect", "Design",
-											"Size", "LaunchTime"
-										];
-	var inforPC_Printer	= [
-											"GraphicCard", "PortConnect", "OpticalDrive",
-											"Name", "Avatar",
-											"Avatar", "Price", "Discount",
-											"GraphicCard", "PortConnect", "OpticalDrive",
-											"MachineType", "Function", "Wattage",
-											"PrintSpeed","PrintingLife", "PrintQuality", 
-											"FirstPage","InkTypes",  "InternalMemory",
-											"PortConnect","Trademarks",
-										];
-	var inforInkTypes = [
-												"Name", "Avatar",
-												"Avatar", "Price", "Discount",
-												"WhereProduction", "Trademarks",
-												"PrinterCompatibility", "MaxPrinterPage"
-											];
-	var inforFWatchs	= [
-											"Name", "Trademarks", "Icon","Library", 
-											"Avatar", "Price", "Discount", "Gift",
-											"Hot", "Active", "FaceDiameter",
-											"FaceMaterial", "FrameMaterial","WireMaterial", 
-                      "WireWidth", "Utilities", "Waterproof", 
-                      "BatteryLifeTime", "ObjectUser", "Description"
-										];
+  "Name", "Avatar", "Icon",
+  "Trademarks", "Library", "Price", "Gift",
+  "Discount", "Active", "Hot",
+  "Screen","HDH", "CPU", "RAM", "Image_hot",
+  "InternalMemory", "Description", "Carousel",
+  "Installment"
+  ];
+  var inforMobiles = [  
+  "RearCamera", "FrontCamera", "MemoryStick",
+  "SIM" , "Battery"
+  ];
+  var inforTablets = [
+  "RearCamera", "FrontCamera", "PortConnect",
+  "SIM", "Size"
+  ] ;
+  var inforLaptops = [
+  "GraphicCard", "PortConnect", "Design",
+  "Size", "LaunchTime"
+  ];
+  var inforPC_Printer = [
+  "GraphicCard", "PortConnect", "OpticalDrive",
+  "Name", "Avatar",
+  "Avatar", "Price", "Discount",
+  "GraphicCard", "PortConnect", "OpticalDrive",
+  "MachineType", "Function", "Wattage",
+  "PrintSpeed","PrintingLife", "PrintQuality", 
+  "FirstPage","InkTypes",  "InternalMemory",
+  "PortConnect","Trademarks",
+  ];
+  var inforInkTypes = [
+  "Name", "Avatar",
+  "Avatar", "Price", "Discount",
+  "WhereProduction", "Trademarks",
+  "PrinterCompatibility", "MaxPrinterPage"
+  ];
+  var inforFWatchs  = [
+  "Name", "Trademarks", "Icon","Library", 
+  "Avatar", "Price", "Discount", "Gift",
+  "Hot", "Active", "FaceDiameter",
+  "FaceMaterial", "FrameMaterial","WireMaterial", 
+  "WireWidth", "Utilities", "Waterproof", 
+  "BatteryLifeTime", "ObjectUser", "Description"
+  ];
   var inforSWatchs  = [
-                      "Name", "Trademarks", "Icon","Library", "Carousel", 
-                      "Avatar", "Price", "Discount", "Gift",
-                      "Hot", "Active", "Screen","GraphicCard", "HDH", "FaceDiameter",
-                      "FaceMaterial", "PortConnect", "Utilities", 
-                      "BatteryLifeTime", "Description",
-                    ];
-	$("#categoryId").change(function() {
-		var categoryId = $(this).val();
-		$.post("./Ajax/ViewTrademark",{id: categoryId}, function (data) {
-			var text = "";
-			var data = JSON.parse(data);
-			for (var item in data) {
-				text += "<option value='" + data[item]["id"] + "'>"+ data[item]["name"] + "</option>";
-			}
-			$("#Trademarks").html(text);
-		});
-		// $(this).parent().nextAll().hide();
-		$(this).parent().nextAll().removeClass('d-block');
-		$(this).parent().nextAll().addClass('d-none');
-		switch (categoryId) {
-			case "1":	
-				inforGenerals.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				inforMobiles.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				break;
-			case "2":	
-				inforGenerals.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				inforLaptops.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				break;
-			case "3":
-				inforGenerals.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				inforTablets.forEach(function(currentValue){
-				  var temp = "#"+ currentValue;
-				  // $(temp).parent().show();
-				  $(temp).parent().addClass('d-block');
-				  $(temp).parent().removeClass('d-none');
-				})
-				break;
-			case "4":
+  "Name", "Trademarks", "Icon","Library", "Carousel", 
+  "Avatar", "Price", "Discount", "Gift",
+  "Hot", "Active", "Screen","GraphicCard", "HDH", "FaceDiameter",
+  "FaceMaterial", "PortConnect", "Utilities", 
+  "BatteryLifeTime", "Description",
+  ];
+  $("#categoryId").change(function() {
+    var categoryId = $(this).val();
+    $.post("./Ajax/ViewTrademark",{id: categoryId}, function (data) {
+      var text = "";
+      var data = JSON.parse(data);
+      for (var item in data) {
+        text += "<option value='" + data[item]["id"] + "'>"+ data[item]["name"] + "</option>";
+      }
+      $("#Trademarks").html(text);
+    });
+    // $(this).parent().nextAll().hide();
+    $(this).parent().nextAll().removeClass('d-block');
+    $(this).parent().nextAll().addClass('d-none');
+    switch (categoryId) {
+      case "1": 
+      inforGenerals.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      inforMobiles.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      break;
+      case "2": 
+      inforGenerals.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      inforLaptops.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      break;
+      case "3":
+      inforGenerals.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      inforTablets.forEach(function(currentValue){
+        var temp = "#"+ currentValue;
+          // $(temp).parent().show();
+          $(temp).parent().addClass('d-block');
+          $(temp).parent().removeClass('d-none');
+        })
+      break;
+      case "4":
         // inforGenerals.forEach(function(currentValue){
         //   var temp = "#"+ currentValue;
         //   // $(temp).parent().show();
@@ -121,16 +189,16 @@ $(function() {
         //   $(temp).parent().removeClass('d-none');
         // })
         // break;
-				break;
-			case "5":
-				inforFWatchs.forEach(function(currentValue){
+        break;
+        case "5":
+        inforFWatchs.forEach(function(currentValue){
           var temp = "#"+ currentValue;
           // $(temp).parent().show();
           $(temp).parent().addClass('d-block');
           $(temp).parent().removeClass('d-none');
         })
         break;
-      case "6": 
+        case "6": 
         inforSWatchs.forEach(function(currentValue){
           var temp = "#"+ currentValue;
           // $(temp).parent().show();
@@ -138,82 +206,75 @@ $(function() {
           $(temp).parent().removeClass('d-none');
         })
         break;
-			case "7":	
+        case "7": 
         inforPC_Printer.forEach(function(currentValue){
           var temp = "#"+ currentValue;
           // $(temp).parent().show();
           $(temp).parent().addClass('d-block');
           $(temp).parent().removeClass('d-none');
         })
-				break;
-			default:
-				break;
-		}
-	});
+        break;
+        default:
+        break;
+      }
+    });
 
-	// $("#Avatar").change(function() {
-	// 	var file = this.files[0];
-	// 	var fileType = file.type;
-	// 	var fileSize = file.size;
-	// 	var checkType = /(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/i;
-	// 	$("#pathAvatar").val($(this).val());
-	// 	if(!checkType.exec(fileType)){
-	// 		$("#messageAvatar").addClass('text-danger');
-	// 		$("#messageAvatar").html("Chỉ upload file có định dạng: jpg, jpeg, png, gif");
-	// 		this.value = '';
+  // $("#Avatar").change(function() {
+  //  var file = this.files[0];
+  //  var fileType = file.type;
+  //  var fileSize = file.size;
+  //  var checkType = /(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/i;
+  //  $("#pathAvatar").val($(this).val());
+  //  if(!checkType.exec(fileType)){
+  //    $("#messageAvatar").addClass('text-danger');
+  //    $("#messageAvatar").html("Chỉ upload file có định dạng: jpg, jpeg, png, gif");
+  //    this.value = '';
 
-	// 		$("#submitProduct").prop("disabled", true);
-	// 		return false;
-	// 	}
-	// 	if(fileSize > 2*1024*1024){
-	// 		$("#messageAvatar").addClass('text-danger');
-	// 		$("#messageAvatar").html("Vui lòng chọn file dưới 2MB");
-	// 		this.value = '';
-	// 		$("#submitProduct").prop("disabled", true);
-	// 		return false;
-	// 	}else {
-	// 		$("#submitProduct").prop("disabled", false);
-	// 		$("#messageAvatar").addClass('text-success');
-	// 		$("#messageAvatar").html("File hợp lệ");
-	// 	}		
-	// });
-	// $("#Library").change(function () {
-	// 	var result = true;
-	// 	var file = this.files;
-	// 	for (var i = 0; i < file["length"]; i++) {
-	// 		var fileType = file[i].type;
-	// 		var fileSize = file[i].size;
-	// 		var checkType = /(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/i;
-	// 		$("#pathLibrary").val($(this).val());
-	// 		if(!checkType.exec(fileType)){
-	// 			$("#messageLibrary").addClass('text-danger');
-	// 			$("#messageLibrary").html("Chỉ upload file có định dạng: jpg, jpeg, png, gif");
-	// 			result = false;
-	// 			$("#submitProduct").prop("disabled", true);
-	// 			break;
-	// 		}
-	// 		if(fileSize > 2*1024*1024){
-	// 			$("#messageLibrary").addClass('text-danger');
-	// 			$("#messageLibrary").html("Vui lòng chọn những file dưới 2MB");
-	// 			result = false;
-	// 			$("#submitProduct").prop("disabled", true);
-	// 			break;
-	// 		}	
-	// 	}
-	// 	if (result == true) {
-	// 		$("#submitProduct").prop("disabled", false);
-	// 		$("#messageLibrary").removeClass('text-danger');
-	// 		$("#messageLibrary").addClass('text-success');
-	// 		$("#messageLibrary").html("File hợp lệ");
-	// 	};
-	// })
-	// show views img
-
-
-	$("#ImageTrademark").change(function() {
-		var link = $(this).val();
-		$("#uploadFile").val(link);
-	});	
+  //    $("#submitProduct").prop("disabled", true);
+  //    return false;
+  //  }
+  //  if(fileSize > 2*1024*1024){
+  //    $("#messageAvatar").addClass('text-danger');
+  //    $("#messageAvatar").html("Vui lòng chọn file dưới 2MB");
+  //    this.value = '';
+  //    $("#submitProduct").prop("disabled", true);
+  //    return false;
+  //  }else {
+  //    $("#submitProduct").prop("disabled", false);
+  //    $("#messageAvatar").addClass('text-success');
+  //    $("#messageAvatar").html("File hợp lệ");
+  //  }   
+  // });
+  // $("#Library").change(function () {
+  //  var result = true;
+  //  var file = this.files;
+  //  for (var i = 0; i < file["length"]; i++) {
+  //    var fileType = file[i].type;
+  //    var fileSize = file[i].size;
+  //    var checkType = /(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/i;
+  //    $("#pathLibrary").val($(this).val());
+  //    if(!checkType.exec(fileType)){
+  //      $("#messageLibrary").addClass('text-danger');
+  //      $("#messageLibrary").html("Chỉ upload file có định dạng: jpg, jpeg, png, gif");
+  //      result = false;
+  //      $("#submitProduct").prop("disabled", true);
+  //      break;
+  //    }
+  //    if(fileSize > 2*1024*1024){
+  //      $("#messageLibrary").addClass('text-danger');
+  //      $("#messageLibrary").html("Vui lòng chọn những file dưới 2MB");
+  //      result = false;
+  //      $("#submitProduct").prop("disabled", true);
+  //      break;
+  //    } 
+  //  }
+  //  if (result == true) {
+  //    $("#submitProduct").prop("disabled", false);
+  //    $("#messageLibrary").removeClass('text-danger');
+  //    $("#messageLibrary").addClass('text-success');
+  //    $("#messageLibrary").html("File hợp lệ");
+  //  };
+  // })
 
 	var sync1 = $("#sync1");
   var sync2 = $("#sync2");
@@ -399,16 +460,6 @@ $(function() {
     $(this).next().slideToggle(500,"linear");
   });
 
-  //mobile-sort
-  $(".filter-trademark > a").click(function() {
-    if ($(this).hasClass('check')) {
-      $(this).removeClass("check");
-      console.log("xóa");
-    }else{
-      $(this).addClass("check");
-       console.log("thêm");
-    };
-  });
 
   $(".js-sort").click(function () {
     $(".js-content-feature").css("display","none");
@@ -514,6 +565,7 @@ $(function() {
   });
   $(".buy-now").click(function () {
     var productId = $(this).attr("data-id");
+    console.log(productId);
     $.ajax({  
             url : "./Cart/AddToCart/"+productId,
             method : "post",
@@ -753,7 +805,204 @@ $(function() {
       "../js/lazysizes.min.js";
     document.body.appendChild(script);
   }
+
+   // Mobile Pagination 
+  $(".js-show-more").click(function(){
+    let page = $(this).attr('data-page');
+    let category = $(this).attr('data-category');
+    let el = $(this);
+    page = parseInt(page);
+    $.ajax({
+      url: 'Ajax/Pagination',
+      type: 'POST',
+      data: {
+              page: page,
+              category :category,
+            },
+    })
+    .done(function(data) {
+      if (data != "") {
+        $("#list-mobile").append(data);
+        console.log(data);
+      }else{
+        el.hide();
+      };
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+    $(this).attr('data-page', page + 1);
+  })
+
+  // filter products by trademark
+  let trademark = "";
+  $(".js-trademark").click(function(){
+    $('#title-sort').hide();
+    let id = $(this).attr('data-id');
+    if ($(this).hasClass('check')) {
+      $(this).removeClass('check');
+      trademark = trademark.replace(id +",","");
+    }else{
+      $(this).addClass('check');
+      trademark += id + ",";
+    }
+    // console.log(trademark);
+    if ($.trim(trademark) == "") {
+      $('#title-sort').show();
+      // window.location.reload(true);
+    }else{
+      // console.log(trademark.slice(0,trademark.lastIndexOf(",")));
+      $.ajax({
+        url: 'Ajax/SearchTrademark',
+        type: 'POST',
+        data: {trademark: trademark.slice(0,trademark.lastIndexOf(","))},
+      })
+      .done(function(data) {
+        $("#list-mobile").html(data);
+        // console.log("success");
+      })
+      .fail(function() {
+        // console.log("error");
+      })
+      .always(function() {
+        // console.log("complete");
+      });   
+    };  
+  })
+
+  // filter products by price
+  $(".js-price").click(function(){
+    $('#title-sort').hide();
+    let price = $(this).data('price');
+    let category = $(this).data('category');
+    $(".js-price").css('font-weight',500);
+    $(this).css('font-weight',600);
+    // console.log(price);
+    $.ajax({
+        url: 'Ajax/SearchPrice',
+        type: 'POST',
+        data: {
+          category: category,
+          price: price,
+        },
+      })
+      .done(function(data) {
+        console.log(data);
+        $("#list-mobile").html(data);
+        // console.log("success");
+      })
+      .fail(function() {
+        // console.log("error");
+      })
+      .always(function() {
+        // console.log("complete");
+      });
+  })
+
+
+
+  $('#js-sendEvaluate').click(function(){
+    var count = $.trim($("#js-content-evaluated").val());
+    var name  = $.trim($("#name").val());
+    var phone = $.trim($("#phone").val());
+    var email = $.trim($("#email").val());
+    if ($("#hdfStar").val() == 0) {
+      $("#js-error-message").text("Bạn chưa đánh giá điểm sao, vui lòng đánh giá.");
+      return false;
+    }else {
+      $("#js-error-message").val("");
+    }
+    if (count == "") {
+      $("#js-error-message").text("Vui lòng nhập nội dung đánh giá về sản phẩm.");
+      $("#js-content-evaluated").val("");
+      $("#js-content-evaluated").css("border","1px solid #d0021b");
+      $("#js-content-evaluated").focus();
+      return false;
+    }else{
+      if (count.length < 80) {
+        $("#js-error-message").text("Nội dung đánh giá quá ít. Vui lòng nhập thêm nội dung đánh giá về sản phẩm.");
+        $("#js-content-evaluated").focus();
+        $("#js-content-evaluated").css("border","1px solid #d0021b");
+        return false;
+      }else{
+        $("#js-content-evaluated").css("border","none");
+        $("#js-error-message").text("");
+      }
+    }
+    if(name == ""){
+      $("#js-error-message").text("Vui lòng nhập họ và tên.");
+      $("#name").focus();
+      $("#name").css("border-color","#d0021b");
+      return false;
+    }else{
+      $("#name").css("border-color","#ddd");
+      $("#js-error-message").text("");
+    }
+    if(phone == "" ){
+      $("#js-error-message").text("Vui lòng nhập số điện thoại.");
+      $("#phone").focus();
+      $("#phone").css("border-color","#d0021b");
+      return false;
+    }else{
+      if (phone.length != 10) {
+        $("#js-error-message").text("Số điện thoại không hợp lệ.");
+        alert("Số điện thoại không hợp lệ.");
+        $("#phone").focus();
+        return false;
+      }else{
+        $("#phone").css("border-color","#ddd");
+        $("#js-error-message").text("");
+      };
+    }
+    if(email == ""){
+      $("#js-error-message").text("Vui lòng nhập Email.");
+      $("#email").focus();
+      $("#email").css("border-color","#d0021b");
+      return false;
+    }else{
+      let regex = new RegExp('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')
+      if (!regex.test(email)) {
+        $("#js-error-message").text("Vui lòng nhập đúng địa chỉ email.");
+        $("#email").focus();
+        $("#email").css("border-color","#d0021b");
+        return false;
+      }
+
+      $("#email").css("border-color","#ddd");
+      $("#js-error-message").text("");
+    }
+    // send evaluate
+    $.ajax({  url : "./Ajax/PostEvaluate",
+              method : "post",
+              data: $("#js-my-evaluate").serialize(),
+              success: function (data){
+                jQuery("#js-reset-evaluate").click();
+                $("#hdfStar").val("0");
+                jQuery("#s5").mouseleave();
+                jQuery(".show-input").click();
+                  alert(data);
+              }
+    });
+    // send email
+    $.ajax({  url : "./Ajax/SendEmail",
+              method : "post",
+              data: $("#js-my-evaluate").serialize(),
+              success: function (data){
+                // console.log(data);
+              }
+    });
+  });
+
+  $("#ImageTrademark").change(function() {
+    var link = $(this).val();
+    $("#uploadFile").val(link);
+  }); 
+
 });
+
 // admin logout
 function Logout(){
   var result = confirm("Bạn có thực sự muốn đăng xuất khỏi trang quản trị?");
@@ -814,6 +1063,9 @@ function AttachImg(el,insertNames){
 }
 function ShowImg(el, time, insertNames){
 	var fileSelected = el.files;
+  console.log(el);
+  console.log(el.files);
+
   if(fileSelected.length > 0){
   	var fileToLoad = fileSelected[0];
   	var fileReader = new FileReader();
@@ -841,10 +1093,10 @@ function AttachImgs(el,insertNames){
 	  _html += '</li>';
 	  var inserAttach = $("#insert-attach-"+ insertNames);
 	  inserAttach.before(_html);
-	  jQuery('#attach-view-'+insertNames+' li').last().prev().find('input[type="file"]').click();
+	  $('#attach-view-'+insertNames+' li').last().prev().find('input[type="file"]').click();
 	}else {
 		if (lasting == "") {
-			jQuery('#attach-view-'+insertNames+' li').last().prev().find('input[type="file"]').click();
+			$('#attach-view-'+insertNames+' li').last().prev().find('input[type="file"]').click();
 		};
 	}
 	
@@ -1000,73 +1252,7 @@ function CmtConfirmCustumer(id_form){
 
 
 
-// Gửi đánh giá sản phẩm 
-function InsertEvaluate(){
-  var count = $.trim($("#js-content-evaluated").val());
-  var name  = $.trim($("#name").val());
-  var phone = $.trim($("#phone").val());
-  var email = $.trim($("#email").val());
-  if ($("#hdfStar").val() == 0) {
-    $("#js-error-message").text("Bạn chưa đánh giá điểm sao, vui lòng đánh giá.");
-    return false;
-  }else {
-    $("#js-error-message").val("");
-  }
-  if (count == "") {
-    $("#js-error-message").text("Vui lòng nhập nội dung đánh giá về sản phẩm.");
-    $("#js-content-evaluated").val("");
-    $("#js-content-evaluated").css("border","1px solid #d0021b");
-    $("#js-content-evaluated").focus();
-    return false;
-  }else{
-    if (count.length < 80) {
-      $("#js-error-message").text("Nội dung đánh giá quá ít. Vui lòng nhập thêm nội dung đánh giá về sản phẩm.");
-      $("#js-content-evaluated").focus();
-      $("#js-content-evaluated").css("border","1px solid #d0021b");
-      return false;
-    }else{
-      $("#js-content-evaluated").css("border","none");
-      $("#js-error-message").text("");
-    }
-  }
-  if(name == ""){
-    $("#js-error-message").text("Vui lòng nhập họ và tên.");
-    $("#name").focus();
-    $("#name").css("border-color","#d0021b");
-    return false;
-  }else{
-    $("#name").css("border-color","#ddd");
-    $("#js-error-message").text("");
-  }
-  if(phone == "" ){
-    $("#js-error-message").text("Vui lòng nhập số điện thoại.");
-    $("#phone").focus();
-    $("#phone").css("border-color","#d0021b");
-    return false;
-  }else{
-    if (phone.length != 10) {
-      $("#js-error-message").text("Số điện thoại không hợp lệ.");
-      alert("Số điện thoại không hợp lệ.");
-      $("#phone").focus();
-      return false;
-    }else{
-      $("#phone").css("border-color","#ddd");
-      $("#js-error-message").text("");
-    };
-  }
 
-  $.ajax({  url : "./Ajax/PostEvaluate",
-            method : "post",
-            data: $("#js-my-evaluate").serialize(),
-            success: function (data){
-              jQuery("#js-reset-evaluate").click();
-              $("#hdfStar").val("0");
-              jQuery("#s5").mouseleave();
-              jQuery(".show-input").click();
-              alert(data);
-            }
-  });
-}
 
 function ShowReply(id, name){
   $(".commemt-ask .comment-now").addClass('hide');
@@ -1074,3 +1260,4 @@ function ShowReply(id, name){
   $("#content"+id).val("@"+ name +": ");
   $("#content"+id).focus();
 }
+

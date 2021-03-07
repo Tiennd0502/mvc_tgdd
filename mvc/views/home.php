@@ -29,7 +29,9 @@
 
 
   <script type="text/javascript" src="public/js/jquery-3.5.0.min.js"></script>
+  <script src='public/js/districts.min.js'></script>
   <script type="text/javascript" src="public/plugin/owlcarousel/owl.carousel.min.js"></script>
   <script type="text/javascript" src="public/js/javascript.js"></script>
+  
 </body>
 </html>

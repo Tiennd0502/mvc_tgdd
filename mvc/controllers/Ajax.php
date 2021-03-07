@@ -130,5 +130,56 @@
 			$data = $this->ProductModel->SearchProduct($keyword);
 			echo $data;
 		}
+
+		public function SendEmail($option = false){
+			if(!$option){
+				$to = $_POST['email'];
+				$subject = 'Đánh giá sản phẩm '.$_POST['name_product'];
+				$message = $_POST['content_evaluated'];
+				$header = 'From: Tienndpd03947@fpt.edu.vn';
+				if(mail($to, $subject, $message, $header)){
+					echo 'đúng';
+				}else {
+					echo 'sai';
+				};
+			}else {
+				echo 'xinchao';
+			}
+			
+		}
+
+		public function Pagination(){
+			$page     = $_POST["page"];
+			$category = $_POST["category"];
+			$data     = $this->ProductModel->ViewMore($page,$category);
+			$this->view("pagination",[
+									"Data" => $data,
+			]);
+		}
+		public function SearchTrademark(){
+			$trademark = $_POST["trademark"];
+			$data     = $this->ProductModel->ProductByTrademark($trademark);
+			$this->view("pagination",[
+									"Data" => $data,
+			]);
+		}
+
+		public function SearchPrice(){
+			$price = $_POST["price"];
+			$category_id = $_POST["category"];
+			
+			// echo $_POST["price"];
+			// exit;
+			$data  = $this->ProductModel->ProductByPrice($price, $category_id);
+			// echo "<pre>";
+			// print_r($data);
+			// echo "</pre>";
+			// exit;
+			$this->view("pagination",[
+									"Data" => $data,
+			]);
+		}
+
+
 	}
 ?>

@@ -16,16 +16,20 @@
 			$this->EvaluateModel = $this->model("EvaluateModel");
 
 			$this->Categorys= $this->CategoryModel->AllCategorys();
+
 		}
 		public function Index(){
 			$mobiles = $this->ProductModel->ProductByCategory(1);
 			$trademarks = $this->TrademarkModel->TrademarkByCategory(1);
+			$mobile_hots= $this->ProductModel->ProductByCategory(1,true);
 			$this->view("home",[
 										"Page" => "mobile",
 										"Categorys" => $this->Categorys,
 										"CurrentPage" => $this->CurrentPage,
 										"Trademarks" => $trademarks,
-										"Mobile" => $mobiles,
+										"Mobiles" => $mobiles,
+               		 	"Mobile_hots" => $mobile_hots,
+										"CategoryId" => "1",
 									]);
 		}
 		// public function Detail($firstname, $lastname=""){

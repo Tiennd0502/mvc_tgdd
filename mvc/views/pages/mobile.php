@@ -40,29 +40,27 @@
 <div class="filter-trademark">
   <?php 
     if (isset($data["Trademarks"]) && !empty($data["Trademarks"])) {
-      $trademarks = json_decode($data["Trademarks"]);
+      $trademarks = json_decode($data["Trademarks"],TRUE);
       $index = 0;
-      foreach ($trademarks as $trademark) {
-        if ($index < 7) { ?>
+      foreach ($trademarks as $trademark) { ?>
           <!-- class="check" -->
-          <a href="" ><img src="public/images/trademark<?= $trademark->path ?>" alt=""></a>
-        <?php }else { ?>  
-           <a href="" class="name-trandemark" ><img src="public/images/trademark<?= $trademark->path ?>" alt=""></a>
-        <?php }
+        <a href="javascript:void(0)" class="js-trademark <?= ($index > 6)? 'name-trandemark' : ''?>" data-id="<?= $trademark['id']?>" data-name="<?= $trademark['name']?>"><img src="public/images/trademark<?= $trademark['path'] ?>" alt=""></a>
+      <?php 
         $index++;
-      }
+      } 
     }?>
    <a href="javascript:;" id="trademark-more" style="border-top: 1px solid #eee">Xem thêm</a>
 </div>
+
 <!-- filter other -->
 <div class="filter-other">
   <div class="filter-price">
     <label>Chọn mức giá: </label>
-    <a href="">Dưới 2 triệu</a>
-    <a href="">Từ 2 - 4 triệu</a>
-    <a href="">Từ 4 - 7 triệu</a>
-    <a href="">Từ 7 - 13 triệu</a>
-    <a href="">Trên 13 triệu</a>
+    <a href="javascript:void(0)" class='js-price' data-price='duoi-2' data-category='<?= $data["CategoryId"]?>'>Dưới 2 triệu</a>
+    <a href="javascript:void(0)" class='js-price' data-price='tu-2-4' data-category='<?= $data["CategoryId"]?>'>Từ 2 - 4 triệu</a>
+    <a href="javascript:void(0)" class='js-price' data-price='tu-4-7' data-category='<?= $data["CategoryId"]?>'>Từ 4 - 7 triệu</a>
+    <a href="javascript:void(0)" class='js-price' data-price='tu-7-13' data-category='<?= $data["CategoryId"]?>'>Từ 7 - 13 triệu</a>
+    <a href="javascript:void(0)" class='js-price' data-price='tren-13' data-category='<?= $data["CategoryId"]?>'>Trên 13 triệu</a>
   </div>
   <div class="filter-feature">
     <label class="criteria js-filter-feature" id="js-filter-feature"> <span>Bộ lọc</span><i class="fa fa-caret-down"></i>
@@ -305,42 +303,30 @@
     </div>
   </div>
 </div>
-<h1 class="h1">Điện thoại nỗi bật nhất</h1>
-<div class="home-product">
-  <!-- Lấy 2 sản phẩm điện thoại nổi bật có image_hot -->
+<h1 class="h1" id="title-sort">Điện thoại nỗi bật nhất</h1>
+<div class="home-product" id="list-mobile">
   <?php 
-    if(isset($data["Mobile"]) && !empty($data["Mobile"])){
-      $mobiles = json_decode($data["Mobile"]);
-      $mobile_hot = array();
-      $index = 0;
-      foreach ($mobiles as $key => $mobile) {
-        if(!empty($mobile->image_hot)){
-          $mobile_hot[] = $mobile;
-          unset($mobiles[$key]);
-          $index ++ ;
-        }
-        if($index == 2){
-          break;
-        }
-      }
+    if(!empty($data["Mobile_hots"]) && !empty($data["Mobiles"])){
+      $mobiles = json_decode($data["Mobiles"]);
+      $mobile_hots = json_decode($data["Mobile_hots"]);
       $index = 0;
       $count = 0;
       foreach ($mobiles as $mobile) {
         if ($count == 0 || $count == 4) { ?>
           <div class="feature">
-            <!-- dtdd/ //strtolower(str_replace(" ","-",$mobile_hot[$index]->name))  -->
-            <a href="dtdd/detail/<?= $mobile_hot[$index]->id ?>" class="large">
-              <img src="public/images/avatar_hot/<?= $mobile_hot[$index]->image_hot ?>" alt="" width="600" height="275">
-              <h3><?= $mobile_hot[$index]->name ?></h3>
+            <!-- dtdd/ //strtolower(str_replace(" ","-",$mobile_hots[$index]->name))  -->
+            <a href="dtdd/detail/<?= $mobile_hots[$index]->id ?>" class="large">
+              <img src="public/images/avatar_hot/<?= $mobile_hots[$index]->image_hot ?>" alt="" width="600" height="275">
+              <h3><?= $mobile_hots[$index]->name ?></h3>
               <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
               <div class="product-price">
                 <?php 
-                if ($mobile_hot[$index]->discount != 0) { ?>
-                  <strong><?= number_format(round($mobile_hot[$index]->price - $mobile_hot[$index]->price * $mobile_hot[$index]->discount / 100, -4),0,",", ".")  ?></strong>
-                  <span><?= number_format($mobile_hot[$index]->price,0,",",".") ?></span>
-                  <i>-<?= $mobile_hot[$index]->discount ?>%</i>
+                if ($mobile_hots[$index]->discount != 0) { ?>
+                  <strong><?= number_format(round($mobile_hots[$index]->price - $mobile_hots[$index]->price * $mobile_hots[$index]->discount / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($mobile_hots[$index]->price,0,",",".") ?></span>
+                  <i>-<?= $mobile_hots[$index]->discount ?>%</i>
                 <?php }else { ?>
-                  <strong><?= number_format($mobile_hot[$index]->price,0,",", ".")  ?></strong>
+                  <strong><?= number_format($mobile_hots[$index]->price,0,",", ".")  ?></strong>
                 <?php }?>                      
               </div>
               <!-- <div class="product-promo noimage">
@@ -352,8 +338,8 @@
               <!-- <label class="discount">GIẢM 45.000₫</label> -->
               <!-- <img class="icon-imgNew cate1" src="./images/Label_01-05.png" alt=""> -->
               <?php 
-              if (!empty($mobile_hot[$index]->icon)) { ?>
-                <img class="icon-imgNew cate1" src="public/images/icon/<?= $mobile_hot[$index]->icon?>" alt="">
+              if (!empty($mobile_hots[$index]->icon)) { ?>
+                <img class="icon-imgNew cate1" src="public/images/icon/<?= $mobile_hots[$index]->icon?>" alt="">
               <?php }?>
             </a>
           </div>
@@ -398,15 +384,12 @@
         </div>
         <?php 
           $count++ ; 
-          if ($count == 28) {
-            break;
-          }
       }
     }
    ?>
 </div>
 <div class="show-more">
-  <label for="">Xem thêm 145 điện thoại<i class="fa fa-caret-down"></i></label>
+  <label for="" class="js-show-more" data-page="1" data-category="<?= $data["CategoryId"]?>">Xem thêm sản phẩm <i class="fa fa-caret-down"></i></label>
 </div>
 <div class="catetag">
   <a href="">Samsung Galaxy Note Mới</a>

@@ -4,7 +4,7 @@
   		if (isset($data["Categorys"])) {
   			$categorys = json_decode($data["Categorys"], TRUE);
   			foreach ($categorys as $key => $category) { ?>
-  				<a class="<?= ($data["CurrentPage"]== $category['slug']) ? "current-page" : "" ?>" href="<?= $category['slug']?>" title="<?= $category['title'] ?>"><?= !empty($category['icon']) ? html_entity_decode($category['icon']) : "" ?><?= $category['name'] ?></a>
+  				<a class="<?= (isset($data["CurrentPage"]) && $data["CurrentPage"]== $category['slug']) ? "current-page" : "" ?>" href="<?= $category['slug']?>" title="<?= $category['title'] ?>"><?= !empty($category['icon']) ? html_entity_decode($category['icon']) : "" ?><?= $category['name'] ?></a>
   			<?php }
   		}
   	 ?>

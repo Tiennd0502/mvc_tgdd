@@ -6,16 +6,7 @@
   width: 100%;
   top: 0;
 }
-
-
-
-
 /* End login */
-
-
-
-
-
 #wrapper {
   padding-left: 0;
 }
@@ -157,10 +148,6 @@ a.card-link:hover .text-warning{
 a.card-link:hover .text-danger{
   color: #b52b27 !important;
 }
-
-
-
-
 
 .card-header{
   padding: .5rem 1.25rem;

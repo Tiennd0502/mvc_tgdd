@@ -2,9 +2,9 @@
 	class ProductModel extends DataBase{
 
     public function AllProducts(){
-    	$sql = "SELECT * FROM `products`";
-    	$result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    	return json_encode($result);
+    	$sql = "SELECT * FROM `products` ORDER BY id ASC LIMIT 0,15";
+      $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+      return json_encode($result);
     }
 
     public function SearchProduct($keyword){
@@ -41,7 +41,37 @@
         return json_encode("false");
       }
     } 
+    public function ProductByTrademark($trademark, $option=''){
+       $sql = "SELECT * FROM products WHERE `products`.`trademark_id` IN (".$trademark .") ORDER BY id ASC LIMIT 0,25";
 
+      $result = false;
+      if ($this->db->query($sql)) {
+        $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($result);
+      }
+      return json_encode($result);
+    }
+    public function ProductByPrice($price, $category_id){
+      $sql = '';
+      $array = explode('-', $price);
+      if ($array[0] == 'duoi') {
+        $sql = "SELECT * FROM products WHERE `products`.`category_id` = ".$category_id." AND `products`.`price` < ".$array[1] ."000000 ORDER BY id ASC LIMIT 0,25";
+        // echo $sql;exit;
+      }elseif($array[0] == 'tu') {
+        $sql = "SELECT * FROM products WHERE `products`.`category_id` = ".$category_id." AND `products`.`price` BETWEEN ".$array[1] ."000000 AND ".$array[2]."000000 ORDER BY id ASC LIMIT 0,25";
+        // echo $sql;exit;
+
+      }else{
+        $sql = "SELECT * FROM products WHERE `products`.`category_id` = ".$category_id." AND `products`.`price` > ".$array[1] ."000000 ORDER BY id ASC LIMIT 0,25";
+      }
+      $result = false;
+      if ($this->db->query($sql)) {
+        $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($result);
+      }
+      return json_encode($result);
+    }
+    
     public function SquirrelPrices($category_id){
       $sql = "SELECT * FROM products 
               INNER JOIN `product_details` 
@@ -345,8 +375,15 @@
       return json_encode($result);
     }
 
-    public function ProductByCategory($id){
-      $sql = "SELECT * FROM products WHERE `products`.`category_id`=".$id;
+    public function ProductByCategory($id, $image_hot = false, $option1 = ''){
+      if ($image_hot) {
+        $sql = "SELECT * FROM products WHERE `products`.`category_id`=".$id . " AND `products`.`image_hot` != '' ORDER BY id ASC LIMIT 0,2";
+      }else {
+        $sql = "SELECT * FROM products WHERE `products`.`category_id`=".$id ." ORDER BY id ASC LIMIT 0,16";
+      }
+      if($option1 == 'nam'){
+        $sql = "SELECT * FROM `products` INNER JOIN `product_details` ON `products`.`id` = `product_details`.`id` WHERE `object_use` LIKE 'nam' ORDER BY `ink_types` ASC";
+      }
       $result = false;
       if ($this->db->query($sql)) {
         $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -362,5 +399,12 @@
       $sql = "UPDATE products SET `number_view`='".$number . "' WHERE `id`='".$id."'";
       $this->db->query($sql);
     }
+
+    public function ViewMore($page,$category,$numberItem = 15){
+      $sql = "SELECT * FROM `products` WHERE `products`.`category_id` ='".$category."' ORDER BY id ASC LIMIT ".$page * $numberItem."," .$numberItem;
+      $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+      return json_encode($result);
+    }
+
 	}
  ?>

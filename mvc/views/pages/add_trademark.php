@@ -57,7 +57,7 @@
       <?php 
         if(isset($trademark)){ ?>
           <img class="ml-3" src="./public/images/<?= isset($trademark) ? $trademark["path"] : "" ?>" width="120" alt="">
-        <?php } ?>
+      <?php } ?>
     </div>
 
     <button type="submit" name="<?= isset($trademark) ? "updateTrademark" : "addTrademark" ?>" class="btn btn-primary">Lưu lại</button>

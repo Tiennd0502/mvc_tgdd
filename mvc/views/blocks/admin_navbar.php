@@ -86,9 +86,9 @@
       <li class="nav-item <?= ($data["Current"] =='Order') ? "active" : ""?> ">
         <a class="nav-link" href="Order"><i class="fas fa-ballot-check"></i> Đơn hàng</a>
       </li>
-      <li class="nav-item <?= ($data["Current"]=='Privilege') ? "active" : ""?> ">
+      <!-- <li class="nav-item <?php//= ($data["Current"]=='Privilege') ? "active" : ""?> ">
         <a class="nav-link" href="Privilege"><i class="fas fa-users-cog"></i> Phân quyền</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </nav>

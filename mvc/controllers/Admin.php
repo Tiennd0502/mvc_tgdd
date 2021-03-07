@@ -1,7 +1,7 @@
 <?php  
 	class Admin extends Controller{
 
-		public $breadcrumb = "Bảng điều khiển";
+		public $breadcrumb   = "Bảng điều khiển";
 		public $admin_navbar = "admin_navbar";
 		public $UserModel;
 
@@ -13,11 +13,11 @@
 	  public function Index(){
 	  	if (isset($_SESSION["admin"])) {
 	  		$this->view("admin_page",[
-	  							"Admin_navbar" => $this->admin_navbar,
-	  							"Page" => "dashboard", 
-	  							"Page_title"=>"admin_page_header",
-	  							"Title" => "Bảng điều khiển",
-	  							"Breadcrumb" => $this->breadcrumb,
+									"Admin_navbar" => $this->admin_navbar,
+									"Page"         => "dashboard", 
+									"Page_title"   =>"admin_page_header",
+									"Title"        => "Bảng điều khiển",
+									"Breadcrumb"   => $this->breadcrumb,
 	  			]);
 	  	}else{
 	  		if (isset($_POST["login"])) {

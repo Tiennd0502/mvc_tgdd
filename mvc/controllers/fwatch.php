@@ -19,17 +19,20 @@
 			$this->Categorys= $this->CategoryModel->AllCategorys();
 		}
 		public function Index(){
-			$laptops = $this->ProductModel->ProductByCategory(5);
-			$trademarks = $this->TrademarkModel->TrademarkByCategory(5);
-			$squirrelPrices = $this->ProductModel->SquirrelPrices(5);
+			
 			$this->view("home",[
 										"Page" => "fwatch",
 										"Categorys" => $this->Categorys,
 										"CurrentPage" => $this->CurrentPage,
-										"Trademarks" => $trademarks,
-										"Laptop" => $laptops,
-										"SquirrelPrices" => $squirrelPrices,
+										"Trademarks" => $this->TrademarkModel->TrademarkByCategory(5),
+										"Laptop" => $this->ProductModel->ProductByCategory(5),
+										"SquirrelPrices" => $this->ProductModel->SquirrelPrices(5),
 										"ClassBody" => "",
+										"Fwatch" => $this->ProductModel->ProductByCategory(5),
+										"Swatch" => $this->ProductModel->ProductByCategory(6),
+										'Albert' => $this->ProductModel->ProductByTrademark(38),
+										'Men_watchs' => $this->ProductModel->ProductByCategory(5,false,'nam'),
+										'Filter_watchs' => $this->ProductModel->ProductByTrademark(39),
 									]);
 		}
 	

@@ -78,8 +78,8 @@
 <div class="">
   <div id="owl-promo" class="owl-carousel home-promo weekend owl-theme">
     <?php 
-      if (isset($data["Mobile"]) && !empty($data["Mobile"])) {
-        $mobiles = json_decode($data["Mobile"]); 
+      if (isset($data["Mobiles"]) && !empty($data["Mobiles"])) {
+        $mobiles = json_decode($data["Mobiles"]); 
         foreach ($mobiles as $mobile) { ?>
           <div class="item">
             <a href="dtdd/detail/<?= $mobile->id ?>" class="large">
@@ -132,95 +132,89 @@
     </div>
   </div>
   <div class="home-product">
-    <!-- Lấy 2 sản phẩm điện thoại nổi bật có image_hot -->
     <?php 
-      if(isset($data["Mobile"]) && !empty($data["Mobile"])){
-        $mobiles = json_decode($data["Mobile"]);
-        $mobile_hot = array();
-        $index = 0;
-        foreach ($mobiles as $key => $mobile) {
-          if(!empty($mobile->image_hot)){
-            $mobile_hot[] = $mobile;
-            unset($mobiles[$key]);
-            $index ++ ;
-          }
-          if($index == 2){
-            break;
-          }
-        }
-        $index = 0;
-        $count = 0;
-        foreach ($mobiles as $mobile) {
-          if ($count == 0 || $count == 4) { ?>
-            <div class="feature">
-              <a href="dtdd/detail/<?= $mobile_hot[$index]->id ?>" class="large">
-                <img data-src="public/images/avatar_hot/<?= $mobile_hot[$index]->image_hot?>" alt="" width="600" height="275" class="lazyload" loading="lazy" >
-                <h3><?= $mobile_hot[$index]->name ?></h3>
-                <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
-                <div class="product-price">
-                  <?php 
-                  if ($mobile_hot[$index]->discount != 0) { ?>
-                    <strong><?= number_format(round($mobile_hot[$index]->price - $mobile_hot[$index]->price * $mobile_hot[$index]->discount / 100, -4),0,",", ".")  ?></strong>
-                    <span><?= number_format($mobile_hot[$index]->price,0,",",".") ?></span>
-                    <i>-<?= $mobile_hot[$index]->discount ?>%</i>
-                  <?php }else { ?>
-                    <strong><?= number_format($mobile_hot[$index]->price,0,",", ".")  ?></strong>
-                  <?php }?>                      
-                </div>
-                <!-- <div class="product-promo noimage">
-                  <p>Giảm thêm <b>500.000₫</b></p>
-                  <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
-                </div> -->
-                <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-                <label class="installment">Trả góp 0%</label>
-                <!-- <label class="discount">GIẢM 45.000₫</label> -->
-                <!-- <img class="icon-imgNew cate1" src="./images/Label_01-05.png" alt=""> -->
+    if(!empty($data["Mobile_hots"]) && !empty($data["Mobiles"])){
+      $mobiles = json_decode($data["Mobiles"]);
+      $mobile_hots = json_decode($data["Mobile_hots"]);
+      $index = 0;
+      $count = 0;
+      foreach ($mobiles as $mobile) {
+        if ($count == 0 || $count == 4) { ?>
+          <div class="feature">
+            <!-- dtdd/ //strtolower(str_replace(" ","-",$mobile_hots[$index]->name))  -->
+            <a href="dtdd/detail/<?= $mobile_hots[$index]->id ?>" class="large">
+              <img src="public/images/avatar_hot/<?= $mobile_hots[$index]->image_hot ?>" alt="" width="600" height="275">
+              <h3><?= $mobile_hots[$index]->name ?></h3>
+              <!-- <h6 class="text-promo">Hàng sắp về</h6> -->
+              <div class="product-price">
                 <?php 
-                if (!empty($mobile_hot[$index]->icon)) { ?>
-                  <img class="icon-imgNew cate1 lazyload" data-src="public/images/icon/<?= $mobile_hot[$index]->icon?>" alt="" loading="lazy" >
-                <?php }?>
-              </a>
-            </div>
-          <?php $index = 1; $count++ ;}else{ ?>
-            <div>
-              <a href="dtdd/detail/<?= $mobile->id ?>" class="large">
-                <img data-src="public/images/avatar<?= $mobile->image?>" alt="" width="180" height="180" class="lazyload" loading="lazy" >
-                <h3><?= $mobile->name?></h3>
-                <h6 class="text-promo">Hàng sắp về</h6>
-                <div class="product-price">
-                  <?php 
-                  if ($mobile->discount != 0) { ?>
-                    <strong><?= number_format(round($mobile->price - $mobile->price * $mobile->discount / 100, -4),0,",", ".")  ?></strong>
-                    <span><?= number_format($mobile->price,0,",",".") ?></span>
-                    <i>-<?= $mobile->discount ?>%</i>
-                  <?php }else { ?>
-                    <strong><?= number_format($mobile->price,0,",", ".")  ?></strong>
-                  <?php }?>                    
-                </div>
-                <div class="product-promo noimage">
-                  <?php if(!empty($mobile->gift)){ ?>
-                    <p>Giảm thêm <b><?= number_format($mobile->gift, 0,",",".")?>₫</b></p>
-                  <?php } ?>
-                  <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
-                </div>
-                <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
-                <!-- <label class="installment">Trả góp 0%</label> -->
-                <label class="discount">GIẢM 45.000₫</label>
-                <?php 
-                if (!empty($mobile->icon)) { ?>
-                  <img class="icon-imgNew cate1 lazyload" data-src="public/images/icon/<?= $mobile->icon?>" alt=""  loading="lazy">
-                <?php }?>
-              </a>
-            </div>
+                if ($mobile_hots[$index]->discount != 0) { ?>
+                  <strong><?= number_format(round($mobile_hots[$index]->price - $mobile_hots[$index]->price * $mobile_hots[$index]->discount / 100, -4),0,",", ".")  ?></strong>
+                  <span><?= number_format($mobile_hots[$index]->price,0,",",".") ?></span>
+                  <i>-<?= $mobile_hots[$index]->discount ?>%</i>
+                <?php }else { ?>
+                  <strong><?= number_format($mobile_hots[$index]->price,0,",", ".")  ?></strong>
+                <?php }?>                      
+              </div>
+              <!-- <div class="product-promo noimage">
+                <p>Giảm thêm <b>500.000₫</b></p>
+                <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p>
+              </div> -->
+              <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
+              <label class="installment">Trả góp 0%</label>
+              <!-- <label class="discount">GIẢM 45.000₫</label> -->
+              <!-- <img class="icon-imgNew cate1" src="./images/Label_01-05.png" alt=""> -->
+              <?php 
+              if (!empty($mobile_hots[$index]->icon)) { ?>
+                <img class="icon-imgNew cate1" src="public/images/icon/<?= $mobile_hots[$index]->icon?>" alt="">
+              <?php }?>
+            </a>
+          </div>
+        <?php $index = 1; $count++ ;} ?>
           <?php 
-            $count++ ; 
-            if ($count == 8) {
-              break;
-            }
-          }
-        }
+            //$positon = strpos($mobile->name, "(");
+            //if($positon == false){
+             // $name = $mobile->name;
+            //}else{
+            //  $name = trim(substr($mobile->name, 0, $positon));
+            //} ?>
+        <div>
+          <!-- dtdd/detail/ //strtolower(str_replace(" ","-",$mobile->name))  -->
+          <a href="dtdd/detail/<?= $mobile->id ?>" class="large">
+            <img src="public/images/avatar/<?= $mobile->image?>" alt="" width="180" height="180">
+            <h3><?= $mobile->name?></h3>
+            <h6 class="text-promo">Hàng sắp về</h6>
+            <div class="product-price">
+              <?php 
+              if ($mobile->discount != 0) { ?>
+                <strong><?= number_format(round($mobile->price - $mobile->price * $mobile->discount / 100, -4),0,",", ".")  ?></strong>
+                <span><?= number_format($mobile->price,0,",",".") ?></span>
+                <i>-<?= $mobile->discount ?>%</i>
+              <?php }else { ?>
+                <strong><?= number_format($mobile->price,0,",", ".")  ?></strong>
+              <?php }?>                    
+            </div>
+            <div class="product-promo noimage">
+              <?php if(!empty($mobile->gift)){ ?>
+                <p>Giảm thêm <b><?= number_format($mobile->gift, 0,",",".")?>₫</b></p>
+              <?php } ?>
+              <!-- <p>Ưu đãi đặc quyền Galaxy Z Elite và gói dịch vụ cao cấp</p> -->
+            </div>
+            <!-- <label class="preorder">Đặt trước đến 24/09</label> -->
+            <label class="installment">Trả góp 0%</label>
+            <!-- <label class="discount">GIẢM 45.000₫</label> -->
+            <?php 
+            if (!empty($mobile->icon)) { ?>
+              <img class="icon-imgNew cate1" src="public/images/icon/<?= $mobile->icon?>" alt="">
+            <?php }?>
+          </a>
+        </div>
+        <?php 
+          $count++ ;
+          if($count == 8)break; 
       }
-     ?>
+    }
+   ?>
   </div>
    <!-- Laptop nỗi bật nhất -->
   <div class="navigat">

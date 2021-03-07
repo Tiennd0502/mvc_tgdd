@@ -164,12 +164,15 @@
 					</div>
 					<div class="area-address js-delivery-address">
 						<div class="address-list">
-							<div class="address-item">
-								<span>Hà Nội</span><i class="fas fa-caret-down"></i>
-							</div>
-							<div class="address-item">
-								<span>Chọn quận, huyện</span><i class="fas fa-caret-down"></i>
-							</div>
+							<select class="address-item" name="calc_shipping_provinces" required="">
+									<option value="">Tỉnh / Thành phố</option>
+							</select>
+								<!-- <span>Hà Nội</span><i class="fas fa-caret-down"></i> -->
+							<select class="address-item" name="calc_shipping_district" required="">
+								<option value="">Quận / Huyện</option>
+							</select>
+							<input class="billing_address_1" name="" type="hidden" value="">
+							<input class="billing_address_2" name="" type="hidden" value="">
 							<div class="address-item">
 								<span>Chọn phường, xã</span><i class="fas fa-caret-down"></i>
 							</div>

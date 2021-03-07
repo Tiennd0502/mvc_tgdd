@@ -374,10 +374,11 @@
       			</div>
     			</div>
     			<div class="person-infor">
+            <input type="hidden" name="name_product" id="name_product" value="<?= $product->infor->name?>">
     				<input type="text" name="name" id="name" placeholder="Họ và tên">
     				<input type="tel" name="phone" id="phone" pattern="[0-9]{10}" required placeholder="Số điện thoại">
     				<input type="Email" name="email" id="email" placeholder="Email">
-    				<a href="javascript:void(0)" onclick="InsertEvaluate()">Gửi đánh giá</a>
+    				<a href="javascript:void(0)" id='js-sendEvaluate'>Gửi đánh giá</a>
     				<button type="reset" id="js-reset-evaluate" class="d-none"></button>
     			</div>
     			<div class="list-attach" id="attach-evaluate" style="border-top: none; background-color: #fff; width: 100%">

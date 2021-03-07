@@ -7,10 +7,15 @@
 		protected $password = "";
 
 		function __construct(){
-			$this->db = new PDO($this->dsn, $this->userName, $this->password);
-			$this->db -> setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND,"SET NAMES utf8");
-			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			date_default_timezone_set('Asia/Ho_Chi_Minh');
+			try{
+				$this->db = new PDO($this->dsn, $this->userName, $this->password);
+				$this->db -> setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND,"SET NAMES utf8");
+				$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				date_default_timezone_set('Asia/Ho_Chi_Minh');
+			}catch(PDOException $e){
+				echo '<p> Kết nối database thất bại! '.$e->getMessage().'</p>';
+				exit;
+			}
 		}
 		public function UploadFileImages($uploadedFiles, $folder){
 			$files       = array();

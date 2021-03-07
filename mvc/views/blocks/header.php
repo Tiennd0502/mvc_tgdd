@@ -7,7 +7,15 @@
       <ul class="wrap-suggestion" id="js-wrap-suggestion"></ul>
     </form>
     <div class="header-infor">
-      <a href="Cart" class="infor-cart"><i class="fal fa-shopping-cart"></i>Giỏ hàng</a>
+      <a href="Cart" class="infor-cart">
+        <?php 
+          if(isset($_SESSION['cart']) && count($_SESSION['cart']) != 0){ ?>
+          <i class='count-cart'><?= count($_SESSION['cart'])?></i>
+        <?php }else { ?>
+          <i class="fal fa-shopping-cart"></i>
+        <?php } ?>
+          Giỏ hàng
+      </a>
       <a href="History_cart" class="infor-history">LỊCH SỬ MUA HÀNG</a>
       <a href="" class="infor-new-hot"><span class="dot"><span class="ping"></span></span><span class="text">Trực tiếp ra mắt Realme C12</span></a>
     </div>
